@@ -26,7 +26,7 @@ router.get('/:id', (req, res) => {
     }
   })
   .catch(err => {
-    res.status(500).json({ message: 'Failed to get projects' });
+    res.status(500).json({ message: 'Failed to get projects : ' + err });
   });
 });
 
@@ -66,8 +66,8 @@ router.put('/:id', (req, res) => {
   .then(project => {
     if (project) {
       Projects.update(changes, id)
-      .then(updatedScheme => {
-        res.json(updatedScheme);
+      .then(updatedProject => {
+        res.json(updatedProject);
       });
     } else {
       res.status(404).json({ message: 'Could not find project with given id' });
